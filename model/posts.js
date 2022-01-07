@@ -12,6 +12,12 @@ module.exports = {
       descricao,
     });
   },
+  deletarItem(idPost) {
+    const novoArr = this.posts.filter((item) => {
+      if (item.id != idPost) return item;
+    });
+    this.posts = [...novoArr];
+  },
 };
 
 function gerarID() {
