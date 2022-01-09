@@ -1,6 +1,11 @@
 module.exports = {
   posts: [
-    { id: "AAA", titulo: "PrimeiroPost", descricao: "Este é o primeiro post." },
+    { id: "1a2", titulo: "PrimeiroPost", descricao: "Este é o primeiro post." },
+    {
+      id: "69s",
+      titulo: "Segundo Post",
+      descricao: "Criado de forma estática, este é o segundo post no mural.",
+    },
   ],
   pegarTodosPosts() {
     return this.posts;
