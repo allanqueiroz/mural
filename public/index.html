@@ -21,8 +21,9 @@
           class="btn btn-outline-dark text-warning m-3"
           data-bs-toggle="modal"
           data-bs-target="#meuModal"
+          title="Clique neste botão para criar um novo post"
         >
-          Novo Post
+          Adicionar Novo Post ao Mural
         </button>
       </div>
       <!-- botão-fechar modal -->
@@ -39,12 +40,22 @@
             </div>
             <div class="modal-body">
               <div class="form-floating">
+                <input
+                type="text"
+                id="input-titulo"
+                  class="form-control mb-3"
+                  placeholder="Digite o titulo do post"
+                ></input>
+                <label for="input-titulo">Titulo</label>
+              </div>
+              <div class="form-floating">
                 <textarea
+                id="txtArea-descricao"
                   class="form-control"
-                  placeholder="Leave a comment here"
-                  id="floatingTextarea"
+                  placeholder="Digite a descrição do post"
+                  style="height: 100px"
                 ></textarea>
-                <label for="floatingTextarea">.txt</label>
+                <label for="txtArea-descricao">Descrição</label>
               </div>
             </div>
             <div class="modal-footer">

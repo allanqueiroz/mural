@@ -1,5 +1,21 @@
+const inputTitulo = document.getElementById("input-titulo");
+const txtAreaDescricao = document.getElementById("txtArea-descricao");
+
 function novoPost() {
-  console.log("Add o post ao mural");
+  const options = {
+    method: "post",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({
+      titulo: inputTitulo.value,
+      descricao: txtAreaDescricao.value,
+    }),
+  };
+  fetch("http://localhost:5000/api/criarPost", options)
+    .then((res) => {
+      console.log(res);
+      buscarPosts();
+    })
+    .catch((err) => console.log(err));
 }
 
 function buscarPosts() {
@@ -12,11 +28,11 @@ function buscarPosts() {
 
       dados.forEach((post) => {
         elemento = `
-        <div class="card mb-2">
+        <div class="card mb-2" id=${post.id}>
             <div class="card-header">
                 <h4 class="card-title">${post.titulo}</h3>
             </div>
-            <div class="card-body" id=${post.id}>
+            <div class="card-body">
                 <p class="card-text">${post.descricao}</p>
              </div>
         </div>
