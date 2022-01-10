@@ -13,9 +13,9 @@ router.post("/criarPost", (req, res) => {
   } else res.status(406).send("Verificar se chaves não são nulas");
 });
 
-router.delete("/deletarPost/:id", (req, res) => {
-  posts.deletarItem(req.params.id);
-  res.send(`Deletou o item de id ${req.params.id}`);
+router.delete("/deletarPost/", (req, res) => {
+  posts.deletarItem(req.body.id);
+  res.send(`Deletou o item de id ${req.body.id}`);
 });
 
 module.exports = router;
