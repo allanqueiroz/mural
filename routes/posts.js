@@ -1,20 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const posts = require("../model/posts");
+const allPosts = require("../model/posts");
 
 router.get("/todosPosts", (req, res) => {
-  res.send(posts.pegarTodosPosts());
+  res.send(allPosts.pegarTodosPosts());
 });
 
 router.post("/criarPost", (req, res) => {
   if (req.body.titulo && req.body.descricao) {
-    posts.adicionarNovoPost(req.body.titulo, req.body.descricao);
-    res.send("Post adicionado com sucesso");
-  } else res.status(406).send("Verificar se chaves não são nulas");
+    allPosts.adicionarNovoPost(req.body.titulo, req.body.descricao);
+    res.send({ message: "Post adicionado com sucesso" });
+  } else
+    res.status(400).send({ message: "Titulo/descrição não devem ser vazios" });
 });
 
 router.delete("/deletarPost/", (req, res) => {
-  posts.deletarItem(req.body.id);
+  allPosts.deletarItem(req.body.id);
   res.send(`Deletou o item de id ${req.body.id}`);
 });
 

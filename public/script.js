@@ -16,8 +16,10 @@ function novoPost() {
       inputTitulo.value = "";
       txtAreaDescricao.value = "";
       buscarPosts();
+      return res.json();
     })
-    .catch((err) => console.log(err));
+    .then((json) => alert(json.message))
+    .catch((err) => console.log("Error:", err));
 }
 
 function buscarPosts() {
@@ -28,23 +30,29 @@ function buscarPosts() {
       let todosPosts = "";
       let elemento = "";
 
-      dados.forEach((post) => {
-        elemento = `
-        <div class="card mb-2" id=${post.id}>
-            <div class="card-header d-flex justify-content-between align-items-center">
-              <h4 class="card-title">${post.titulo}</h3>
-              <button class="btn btn-outline-dark text-warning" onclick="deletarPost('${post.id}')" title="Excluir post">
-                <i class="bi bi-trash"></i>
-              </button>
-            </div>
-            <div class="card-body">
-                <p class="card-text">${post.descricao}</p>
-             </div>
-        </div>
-       `;
-        todosPosts += elemento;
-      });
-      document.querySelector("#container-mural").innerHTML = todosPosts;
+      if (dados.length) {
+        dados.forEach((post) => {
+          elemento = `
+          <div class="card mb-2" id=${post.id}>
+              <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title">${post.titulo}</h3>
+                <button class="btn btn-outline-dark text-warning" onclick="deletarPost('${post.id}')" title="Excluir post">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+              <div class="card-body">
+                  <p class="card-text">${post.descricao}</p>
+               </div>
+          </div>
+         `;
+          todosPosts += elemento;
+        });
+        document.querySelector("#container-mural").innerHTML = todosPosts;
+      } else {
+        document.querySelector(
+          "#container-mural"
+        ).innerHTML = `<h3>Não há posts neste mural. Utilize o botão acima para adicionar.</h3>`;
+      }
     });
 }
 
